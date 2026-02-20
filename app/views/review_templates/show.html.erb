@@ -1,0 +1,111 @@
+<h1>
+  Review #<%= @the_review.id %> details
+</h1>
+
+<article>
+  <div>
+    <a href="/reviews">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_review/<%= @the_review.id %>">
+      Delete review
+    </a>
+  </div>
+  <dl>
+    <dt>
+      Reviewer
+    </dt>
+    <dd>
+      <%= @the_review.reviewer_id %>
+    </dd>
+
+    <dt>
+      Reviewee
+    </dt>
+    <dd>
+      <%= @the_review.reviewee_id %>
+    </dd>
+
+    <dt>
+      Body
+    </dt>
+    <dd>
+      <%= @the_review.body %>
+    </dd>
+
+    <dt>
+      Stars
+    </dt>
+    <dd>
+      <%= @the_review.stars %>
+    </dd>
+
+    <dt>
+      Created at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_review.created_at) %> ago
+    </dd>
+
+    <dt>
+      Updated at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_review.updated_at) %> ago
+    </dd>
+  </dl>
+</article>
+
+<hr>
+
+
+<article>
+  <header>
+    <h2>
+      Edit review
+    </h2>
+  </header>
+
+  <form action="/modify_review/<%= @the_review.id %>"  method="post" >
+    <div>
+      <label for="reviewer_id_box">
+        Reviewer
+      </label>
+
+      <input type="text" id="reviewer_id_box" name="query_reviewer_id" value="<%= @the_review.reviewer_id %>">
+    </div>
+
+    <div>
+      <label for="reviewee_id_box">
+        Reviewee
+      </label>
+
+      <input type="text" id="reviewee_id_box" name="query_reviewee_id" value="<%= @the_review.reviewee_id %>">
+    </div>
+
+    <div>
+      <label for="body_box">
+        Body
+      </label>
+
+      <input type="text" id="body_box" name="query_body" value="<%= @the_review.body %>">
+    </div>
+
+    <div>
+      <label for="stars_box">
+        Stars
+      </label>
+
+      <input type="text" id="stars_box" name="query_stars" value="<%= @the_review.stars %>">
+    </div>
+
+    <button type="submit">
+      Update review
+    </button>
+  </form>
+</article>
+
+<hr>

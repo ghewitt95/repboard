@@ -1,0 +1,67 @@
+<h1>
+  List of all reviews
+</h1>
+
+<hr>
+
+<article>
+  <header>
+    <h2>
+      Add a new review
+    </h2>
+  </header>
+
+  <form action="/insert_review" method="post">
+    <div>
+      <label for="reviewer_id_box">
+        Reviewer
+      </label>
+
+      <input type="text" id="reviewer_id_box" name="query_reviewer_id">
+    </div>
+
+    <div>
+      <label for="reviewee_id_box">
+        Reviewee
+      </label>
+
+      <input type="text" id="reviewee_id_box" name="query_reviewee_id">
+    </div>
+
+    <div>
+      <label for="body_box">
+        Body
+      </label>
+
+      <input type="text" id="body_box" name="query_body">
+    </div>
+
+    <div>
+      <label for="stars_box">
+        Stars
+      </label>
+
+      <input type="text" id="stars_box" name="query_stars">
+    </div>
+
+    <button type="submit">
+      Create review
+    </button>
+  </form>
+</article>
+
+<hr>
+
+<article>
+  <ul>
+    <% @list_of_reviews.each do |a_review| %>
+      <li>
+        <a href="/reviews/<%= a_review.id %>">
+          Review #<%= a_review.id %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
+
+<hr>

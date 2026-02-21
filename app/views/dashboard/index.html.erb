@@ -13,6 +13,7 @@
       <p><small><%= review.created_at.strftime("%B %d, %Y") %></small></p>
     </div>
   <% end %>
+  <%= paginate @reviews %>
 <% else %>
   <p>No reviews yet. Share your profile to start collecting feedback!</p>
 <% end %>

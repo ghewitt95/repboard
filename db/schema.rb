@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_20_213027) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_21_220228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -172,7 +172,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_20_213027) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "display_name"
-    t.boolean "reviewable"
+    t.boolean "reviewable", default: false
     t.text "bio"
     t.string "slug"
     t.datetime "created_at", null: false

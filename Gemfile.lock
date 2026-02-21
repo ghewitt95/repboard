@@ -480,6 +480,7 @@ DEPENDENCIES
   htmlbeautifier
   http
   importmap-rails
+  kaminari (~> 1.2)
   pg (~> 1.1)
   propshaft
   pry-rails

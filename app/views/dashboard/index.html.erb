@@ -3,6 +3,9 @@
 
 <hr>
 
+<h2>Rating Over Time</h2>
+<%= line_chart @chart_data %>
+
 <%= form_tag("/dashboard", method: :get, data: { controller: "auto-submit", turbo_frame: "_top" }) do %>
   <label>Filter by stars:</label>
   <select name="stars" data-action="change->auto-submit#submit">

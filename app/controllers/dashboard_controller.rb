@@ -9,5 +9,9 @@ class DashboardController < ApplicationController
     end
 
     @reviews = @reviews.page(params[:page]).per(10)
+
+    @chart_data = current_user.reviews_received
+                              .group_by_month(:created_at)
+                              .average(:stars)
   end
 end

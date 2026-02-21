@@ -3,17 +3,31 @@
 
 <hr>
 
+<%= form_tag("/dashboard", method: :get, data: { controller: "auto-submit", turbo_frame: "_top" }) do %>
+  <label>Filter by stars:</label>
+  <select name="stars" data-action="change->auto-submit#submit">
+    <option value="">All</option>
+    <option value="5" <%= "selected" if params[:stars] == "5" %>>⭐⭐⭐⭐⭐</option>
+    <option value="4" <%= "selected" if params[:stars] == "4" %>>⭐⭐⭐⭐</option>
+    <option value="3" <%= "selected" if params[:stars] == "3" %>>⭐⭐⭐</option>
+    <option value="2" <%= "selected" if params[:stars] == "2" %>>⭐⭐</option>
+    <option value="1" <%= "selected" if params[:stars] == "1" %>>⭐</option>
+  </select>
+<% end %>
+    
+
+
 <h2>My Reviews</h2>
 
-<% if @reviews.any? %>
-  <% @reviews.each do |review| %>
-    <div>
-      <p><strong><%= review.reviewer.display_name %></strong> · <%= review.stars %> stars</p>
-      <p><%= review.body %></p>
-      <p><small><%= review.created_at.strftime("%B %d, %Y") %></small></p>
-    </div>
-  <% end %>
-  <%= paginate @reviews %>
-<% else %>
-  <p>No reviews yet. Share your profile to start collecting feedback!</p>
-<% end %>
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+        <div>
+          <p><strong><%= review.reviewer.display_name %></strong> · <%= review.stars %> stars</p>
+          <p><%= review.body %></p>
+          <p><small><%= review.created_at.strftime("%B %d, %Y") %></small></p>
+        </div>
+      <% end %>
+      <%= paginate @reviews %>
+    <% else %>
+      <p>No reviews yet. Share your profile to start collecting feedback!</p>
+    <% end %>

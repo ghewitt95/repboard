@@ -1,0 +1,18 @@
+<h1>My Dashboard</h1>
+<p>⭐ <%= current_user.average_rating || "No ratings yet" %> · <%= current_user.review_count %> reviews</p>
+
+<hr>
+
+<h2>My Reviews</h2>
+
+<% if @reviews.any? %>
+  <% @reviews.each do |review| %>
+    <div>
+      <p><strong><%= review.reviewer.display_name %></strong> · <%= review.stars %> stars</p>
+      <p><%= review.body %></p>
+      <p><small><%= review.created_at.strftime("%B %d, %Y") %></small></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>No reviews yet. Share your profile to start collecting feedback!</p>
+<% end %>

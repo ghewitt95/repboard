@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get("/dashboard", {:controller => "dashboard", :action => "index" })
   get "home/index"
   root to: "home#index"
   # Routes for the Review resource:

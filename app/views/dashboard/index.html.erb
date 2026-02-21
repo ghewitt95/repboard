@@ -1,36 +1,53 @@
-<h1>My Dashboard</h1>
-<p>⭐ <%= current_user.average_rating || "No ratings yet" %> · <%= current_user.review_count %> reviews</p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1 class="fw-bold">My Dashboard</h1>
+      <p class="lead">⭐ <%= current_user.average_rating || "No ratings yet" %> · <%= current_user.review_count %> reviews</p>
 
-<hr>
+      <hr>
 
-<h2>Rating Over Time</h2>
-<%= line_chart @chart_data %>
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h2 class="card-title">Rating Over Time</h2>
+          <%= line_chart @chart_data %>
+        </div>
+      </div>
 
-<%= form_tag("/dashboard", method: :get, data: { controller: "auto-submit", turbo_frame: "_top" }) do %>
-  <label>Filter by stars:</label>
-  <select name="stars" data-action="change->auto-submit#submit">
-    <option value="">All</option>
-    <option value="5" <%= "selected" if params[:stars] == "5" %>>⭐⭐⭐⭐⭐</option>
-    <option value="4" <%= "selected" if params[:stars] == "4" %>>⭐⭐⭐⭐</option>
-    <option value="3" <%= "selected" if params[:stars] == "3" %>>⭐⭐⭐</option>
-    <option value="2" <%= "selected" if params[:stars] == "2" %>>⭐⭐</option>
-    <option value="1" <%= "selected" if params[:stars] == "1" %>>⭐</option>
-  </select>
-<% end %>
-    
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">My Reviews</h2>
+        <%= form_tag("/dashboard", method: :get, data: { controller: "auto-submit", turbo_frame: "_top" }) do %>
+          <select name="stars" class="form-select" data-action="change->auto-submit#submit">
+            <option value="">All Stars</option>
+            <option value="5" <%= "selected" if params[:stars] == "5" %>>⭐⭐⭐⭐⭐</option>
+            <option value="4" <%= "selected" if params[:stars] == "4" %>>⭐⭐⭐⭐</option>
+            <option value="3" <%= "selected" if params[:stars] == "3" %>>⭐⭐⭐</option>
+            <option value="2" <%= "selected" if params[:stars] == "2" %>>⭐⭐</option>
+            <option value="1" <%= "selected" if params[:stars] == "1" %>>⭐</option>
+          </select>
+        <% end %>
+      </div>
 
-
-<h2>My Reviews</h2>
-
-    <% if @reviews.any? %>
-      <% @reviews.each do |review| %>
-        <div>
-          <p><strong><%= review.reviewer.display_name %></strong> · <%= review.stars %> stars</p>
-          <p><%= review.body %></p>
-          <p><small><%= review.created_at.strftime("%B %d, %Y") %></small></p>
+      <% if @reviews.any? %>
+        <% @reviews.each do |review| %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <strong><%= review.reviewer.display_name %></strong>
+                <span><%= "⭐" * review.stars %></span>
+              </div>
+              <p class="mt-2 mb-1"><%= review.body %></p>
+              <small class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></small>
+            </div>
+          </div>
+        <% end %>
+        <%= paginate @reviews %>
+      <% else %>
+        <div class="card">
+          <div class="card-body text-center text-muted">
+            <p>No reviews yet. Share your profile to start collecting feedback!</p>
+          </div>
         </div>
       <% end %>
-      <%= paginate @reviews %>
-    <% else %>
-      <p>No reviews yet. Share your profile to start collecting feedback!</p>
-    <% end %>
+    </div>
+  </div>
+</div>

@@ -10,3 +10,13 @@
  */
 
 @import "custom-image.css";
+
+[data-star-rating-target="star"] {
+  color: gray;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+[data-star-rating-target="star"].selected {
+  color:gold;
+}

@@ -20,9 +20,20 @@
   <h2>Leave a Review</h2>
   <%= form_tag("/insert_review") do %>
     <input type="hidden" name="query_reviewee_id" value="<%= @freelancer.id %>">
-    <div>
-      <label>Stars (1-5)</label>
-      <input type="number" name="query_stars" min="1" max="5" required>
+    <div data-controller="star-rating">
+      <label>Stars</label>
+      <input type="hidden" name="query_stars"  data-star-rating-target="input" value="0">
+      <div>
+        <% (1..5).each do |i| %>
+          <span
+          data-star-rating-target="star"
+          data-value="<%= i %>"
+          data-action="click->star-rating#select mouseover->star-rating#highlight mouseout->star-rating#reset"
+            style="cursor:pointer; font-size: 2rem;">
+            ☆
+          </span>
+        <% end %>
+      </div>
     </div>
     <div>
       <label>Your Review</label>

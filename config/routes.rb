@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   # DELETE
   get("/delete_review/:path_id", { :controller => "reviews", :action => "destroy" })
 
+  # PROFILE PAGE
+  get("/profile/:slug", { :controller => "profiles", :action => "show" })
   #------------------------------
 
   devise_for :users

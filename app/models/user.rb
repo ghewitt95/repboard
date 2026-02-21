@@ -9,6 +9,14 @@ class User < ApplicationRecord
 
   before_validation :generate_slug, on: :create
 
+  def average_rating
+    reviews_received.average(:stars)&.round(1)
+  end
+
+  def review_count
+    reviews_received.count
+  end
+
   private
 
   def generate_slug

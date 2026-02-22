@@ -4,27 +4,6 @@ A portable reputation platform that lets freelancers collect structured client f
 
 ## Setup Instructions
 
-1. Clone the repo:
-```bash
-   git clone https://github.com/ghewitt95/repboard.git
-   cd repboard
-```
-
-2. Install dependencies:
-```bash
-   bundle install
-```
-
-3. Set up the database:
-```bash
-   rails db:create
-   rails db:migrate
-```
-
-4. Start the server:
-```bash
-   bin/server
-```
 
 ## ERD
 ```

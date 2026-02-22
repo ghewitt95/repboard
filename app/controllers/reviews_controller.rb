@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [ :create, :destroy ]
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def index
     matching_reviews = Review.all
@@ -19,17 +19,18 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    the_review = Review.new
-    the_review.reviewer_id = current_user.id
-    the_review.reviewee_id = params.fetch("query_reviewee_id")
-    the_review.body = params.fetch("query_body")
-    the_review.stars = params.fetch("query_stars")
+    reviewee = User.find(params.fetch("query_reviewee_id"))
 
-    if the_review.valid?
-      the_review.save
-      redirect_to("/profile/#{the_review.reviewee.slug}", { :notice => "Review submitted successfully." })
+    service = CreateReview.new(
+      reviewer: current_user,
+      reviewee_id: reviewee.id,
+      body: params.fetch("query_body"),
+      stars: params.fetch("query_stars")
+    )
+    if service.call
+      redirect_to "/profile/#{service.review.reviewee.slug}", notice: "Review submitted successfully."
     else
-      redirect_to("/profile/#{the_review.reviewee.slug}", { :alert => the_review.errors.full_messages.to_sentence })
+      redirect_to "/profile/#{reviewee.slug}", alert: service.error
     end
   end
 

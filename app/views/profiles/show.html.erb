@@ -21,16 +21,18 @@
 
         <hr>
 
-        <% if user_signed_in? %>
+        <% if user_signed_in? && !current_user.reviewable? %>
           <div class="card shadow-sm">
             <div class="card-body">
               <h2 class="card-title mb-4">Leave a Review</h2>
-              <%= form_tag("/insert_review") do %>
+              <%= form_tag("/insert_review", data: { turbo: false, controller: "review-form", action: "submit->review-form#submit" }) do %>
                 <input type="hidden" name="query_reviewee_id" value="<%= @freelancer.id %>">
+
+                <div class="alert alert-danger d-none" data-review-form-target="error"></div>
 
                 <div class="mb-3" data-controller="star-rating">
                   <label class="form-label fw-bold">Your Rating</label>
-                  <input type="hidden" name="query_stars" data-star-rating-target="input" value="0">
+                  <input type="hidden" name="query_stars" data-star-rating-target="input" data-review-form-target="stars" value="0">
                   <div>
                     <% (1..5).each do |i| %>
                       <span
@@ -46,7 +48,7 @@
 
                 <div class="mb-3">
                   <label class="form-label fw-bold">Your Review</label>
-                  <textarea name="query_body" class="form-control" rows="4" required placeholder="Share your experience..."></textarea>
+                  <textarea name="query_body" class="form-control" rows="4" data-review-form-target="body" placeholder="Share your experience..."></textarea>
                 </div>
 
                 <div class="d-grid">
@@ -55,6 +57,8 @@
               <% end %>
             </div>
           </div>
+        <% elsif user_signed_in? && current_user.reviewable? %>
+          <p class="text-muted text-center py-4">Only clients can leave reviews.</p>
         <% else %>
           <div class="text-center py-4">
             <%= link_to "Sign in to leave a review", new_user_session_path, class: "btn btn-outline-primary", data: { turbo: false } %>

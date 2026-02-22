@@ -32,7 +32,7 @@
 
         <hr>
 
-        <% if user_signed_in? %>
+        <% if user_signed_in? && !current_user.reviewable? %>
           <div class="card shadow-sm">
             <div class="card-body">
               <h2 class="card-title mb-4">Leave a Review</h2>
@@ -68,7 +68,7 @@
           </div>
         <% else %>
           <div class="text-center py-4">
-            <%= link_to "Sign in to leave a review", new_user_session_path, class: "btn btn-outline-primary" %>
+            <%= link_to "Sign in to leave a review", new_user_session_path, class: "btn btn-outline-primary", data: { turbo_frame: "_top" } %>
           </div>
         <% end %>
       <% end %>

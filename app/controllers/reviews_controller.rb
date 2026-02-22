@@ -19,6 +19,10 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    if current_user.reviewable?
+      redirect_to("/profile/#{User.find(params.fetch("query_reviewee_id")).slug}", { :alert => "Only clients can leave reviews." })
+      return
+    end
     the_review = Review.new
     the_review.reviewer_id = current_user.id
     the_review.reviewee_id = params.fetch("query_reviewee_id")

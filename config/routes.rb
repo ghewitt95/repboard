@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "client_dashboard/index"
-  get("/dashboard", {:controller => "dashboard", :action => "index" })
+  get("/dashboard", { :controller => "dashboard", :action => "index" })
   get("/client-dashboard", { :controller => "client_dashboard", :action => "index" })
   get "home/index"
   root to: "home#index"

@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     if @freelancer.nil?
       redirect_to(root_path, { :alert => "Profile not found." })
     else
-    @reviews = @freelancer.reviews_received.order(created_at: :desc)
+    @reviews = @freelancer.reviews_received.recent
     @new_review = Review.new
     end
   end

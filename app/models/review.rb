@@ -11,6 +11,8 @@
 #  reviewer_id :integer
 #
 class Review < ApplicationRecord
+  scope :recent, -> { order(created_at: :desc) }
+  scope :positive, -> { where("stars >= ?", 4) }
   belongs_to :reviewer, class_name: "User"
   belongs_to :reviewee, class_name: "User"
 

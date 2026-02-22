@@ -5,7 +5,7 @@
       <p class="lead">⭐ <%= current_user.average_rating || "No ratings yet" %> · <%= current_user.review_count %> reviews</p>
 
       <div class="mb-3" data-controller="clipboard">
-        <input type="text" value="<%= request.base_url %>/profile/<%= current_user.slug %>" class="form-control d-inline-block w-75" readonly data-clipboard-target="source">
+        <input type="hidden" data-clipboard-target="source" value="<%= request.base_url %>/profile/<%= current_user.slug %>">
         <button class="btn btn-outline-primary btn-sm" data-action="click->clipboard#copy" data-clipboard-target="button">
           Copy Link
         </button>

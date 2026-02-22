@@ -33,7 +33,11 @@
       <div class="ms-auto d-flex align-items-center gap-3">
         <% if user_signed_in? %>
           <span class="text-white">Hello, <%= current_user.display_name %></span>
-          <%= link_to "Dashboard", "/dashboard", class: "btn btn-outline-light btn-sm" %>
+          <% if current_user.reviewable? %>
+            <%= link_to "Dashboard", "/dashboard", class: "btn btn-outline-light btn-sm" %>
+          <% else %>
+            <%= link_to "My Reviews", "client-dashboard", class: "btn btn-outline-light btn-sm" %>
+          <% end %>
           <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
         <% else %>
           <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light btn-sm" %>
@@ -42,9 +46,9 @@
       </div>
     </nav>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-<%= yield %>
-</body>
+    <%= yield %>
+  </body>
 </html>

@@ -57,3 +57,5 @@ gem "kaminari", "~> 1.2"
 gem "chartkick", "~> 5.2"
 
 gem "groupdate", "~> 6.7"
+
+gem "simple_form"

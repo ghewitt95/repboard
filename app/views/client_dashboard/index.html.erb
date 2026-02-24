@@ -19,8 +19,11 @@
                 <p class="mt-2 mb-1"><%= review.body %></p>
                 <small class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></small>
               </div>
-              <div>
-                <%= button_to "Delete", "/delete_review/#{review.id}", method: :get, class: "btn btn-outline-danger btn-sm", data: { confirm: "AAre you sure?" } %>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-outline-secondary btn-sm"
+                  onclick="navigator.clipboard.writeText('<%= root_url %>profile/<%= review.reviewee.slug %>').then(() => { this.textContent = '✓ Copied!'; setTimeout(() => { this.textContent = 'Share'; }, 2000); })">Share</button>
+                <%= button_to "Delete", "/delete_review/#{review.id}", method: :get, class: "btn btn-outline-danger btn-sm", data: { confirm: "Are you sure?" } %>
               </div>
             </div>
           </div>

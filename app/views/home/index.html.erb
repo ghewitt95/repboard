@@ -4,7 +4,7 @@
       <h1 class="display-4 fw-bold">Build Your Reputation. Take It Anywhere.</h1>
       <p class="lead mt-3">RepBoard gives freelancers a portable, verified review profile they can share with any client - no platform lock-in. </p>
       <% unless user_signed_in? %>
-        <%= link_to "Get Started Free", new_user_registration_path%>
+        <%= link_to "Get Started Free", new_user_registration_path, class: "btn btn-lg mt-3", style: "background-color: #028090; border-color: #028090; color:white;" %>
       <% end%>
     </div>
   </div>
@@ -16,19 +16,19 @@
     <h2 class="mb-4">Why RepBoard?</h2>
     <div class="col-md-4">
       <h3>Collect Verified Reviews</h3>
-      <p style="font-size: 1.6rem; letter-spacing: 0.1rem;">⭐⭐⭐⭐⭐</p>
+      <p style="font-size: 1.6rem; letter-spacing: 0.1rem;">✅</p>
       <p>Invite clients to leave a star rating and written review directly on your profile.</p>
     </div>
 
     <div class="col-md-4">
       <h3>Share One Link</h3>
-      <p style="font-size: 1.6rem; letter-spacing: 0.1rem;">⭐⭐⭐⭐⭐</p>
+      <p style="font-size: 1.6rem; letter-spacing: 0.1rem;">🔗</p>
       <p>Your public profile works everywhere - paste it in an email, a proposal, or a LinkedIn message.</p>
     </div>
 
     <div class="col-md-4">
       <h3>Track Your Reputation</h3>
-      <p style="font-size: 1.6rem; letter-spacing: 0.1rem;">⭐⭐⭐⭐⭐</p>
+      <p style="font-size: 1.6rem; letter-spacing: 0.1rem;">📊</p>
       <p>See your average rating, review trends over time, and monitor client satisfaction from your dashboard</p>
     </div>
   </div>
@@ -38,7 +38,7 @@
   <div class="row justify-content-center my-5">
     <div class="col-lg-6">
       <h2 class="text-center mb-4">How It Works</h2>
-      <ol class="list-group lsit-group-numbered">
+      <ol class="list-group list-group-numbered">
         <li class="list-group-item"><strong>Sign up</strong> as a freelancer in under 2 minutes</li>
         <li class="list-group-item"><strong>Share your profile link</strong> with clients after each project</li>
         <li class="list-group-item"><strong>Clients leave a review</strong> - no account required to view your profile</li>
@@ -54,7 +54,7 @@
       <h2>Ready to own your reputation?</h2>
       <p>Join freelancers who use RepBoard to stand out and win more clients.</p>
       <% unless user_signed_in? %>
-        <%= link_to "Create your Profile Now", new_user_registration_path, class: "btn btn-success btn-lg mt-2" %>
+        <%= link_to "Create your Profile Now", new_user_registration_path, class: "btn btn-lg mt-2", style: "background-color: #028090; border-color: #028090; color: white;" %>
       <% end %>
     </div>
   </div>

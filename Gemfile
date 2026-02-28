@@ -15,6 +15,7 @@ gem "thruster", require: false        # HTTP caching/compression for Puma
 gem "tzinfo-data", platforms: %i[windows jruby] # Timezone data for Windows/JRuby
 gem "dotenv"                          # Load environment variables from .env
 gem "http"                            # Simple HTTP client for APIs
+gem "resend"
 gem "rollbar"                         # Error tracking in production
 gem "appdev_support"                  # Learning helpers (nicer error messages, etc.)
 

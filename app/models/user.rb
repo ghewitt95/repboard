@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  avatar_url             :string
 #  bio                    :text
 #  display_name           :string
 #  email                  :string           default(""), not null
@@ -30,6 +31,9 @@ class User < ApplicationRecord
 
   has_many :reviews_given, class_name: "Review", foreign_key: "reviewer_id", dependent: :destroy
   has_many :reviews_received, class_name: "Review", foreign_key: "reviewee_id", dependent: :destroy
+
+  has_many :links, dependent: :destroy
+  accepts_nested_attributes_for :links, allow_destroy: true, reject_if: :all_blank
 
   def average_rating
     reviews_received.average(:stars)&.round(1)

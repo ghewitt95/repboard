@@ -5,7 +5,7 @@
 - Project Name: RepBoard
 - Reviewer Name: Claude, Ian Heraty, Adolfo Nava
 - Repository URL: <https://github.com/ghewitt95/repboard>
-- Feedback Pull Request URL: <>
+- Feedback Pull Request URL: <https://github.com/ghewitt95/repboard/pull/27>
 
 ---
 

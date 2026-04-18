@@ -9,11 +9,11 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
+    the_id = params.fetch("id")
 
     matching_reviews = Review.where({ :id => the_id })
 
-    @the_review = matching_reviews.at(0)
+    @the_review = matching_reviews.first
 
     render({ :template => "review_templates/show" })
   end
@@ -35,8 +35,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    the_id = params.fetch("path_id")
-    the_review = Review.where({ :id => the_id }).at(0)
+    the_id = params.fetch("id")
+    the_review = Review.where({ :id => the_id }).first
 
     the_review.reviewer_id = params.fetch("query_reviewer_id")
     the_review.reviewee_id = params.fetch("query_reviewee_id")
@@ -52,8 +52,8 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("path_id")
-    the_review = Review.where({ :id => the_id }).at(0)
+    the_id = params.fetch("id")
+    the_review = Review.where({ :id => the_id }).first
 
     if the_review.reviewer_id == current_user.id
       the_review.destroy

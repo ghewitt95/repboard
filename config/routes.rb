@@ -9,14 +9,6 @@ Rails.application.routes.draw do
   # CREATE
   post("/reviews", { :controller => "reviews", :action => "create" })
 
-  # READ
-  get("/reviews/new", { :controller => "reviews", :action => "new" })
-  get("/reviews/:id", { :controller => "reviews", :action => "show" })
-
-  # UPDATE
-  patch("/reviews/:id", { :controller => "reviews", :action => "update" })
-  get("/reviews/:id/edit", { :controller => "reviews", :action => "edit" })
-
   # DELETE
   delete("/reviews/:id", { :controller => "reviews", :action => "destroy" })
 

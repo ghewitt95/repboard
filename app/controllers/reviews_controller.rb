@@ -1,13 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
-  def index
-    matching_reviews = Review.all
-    @list_of_reviews = matching_reviews.order({ :created_at => :desc })
-
-    render({ :template => "review_templates/index" })
-  end
-
   def show
     the_id = params.fetch("id")
 

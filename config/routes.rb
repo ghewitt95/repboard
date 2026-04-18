@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   post("/reviews", { :controller => "reviews", :action => "create" })
 
   # READ
-  get("/reviews", { :controller => "reviews", :action => "index" })
   get("/reviews/new", { :controller => "reviews", :action => "new" })
   get("/reviews/:id", { :controller => "reviews", :action => "show" })
 

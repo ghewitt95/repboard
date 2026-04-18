@@ -7,26 +7,24 @@ Rails.application.routes.draw do
   # Routes for the Review resource:
 
   # CREATE
-  post("/insert_review", { :controller => "reviews", :action => "create" })
+  post("/reviews", { :controller => "reviews", :action => "create" })
 
   # READ
   get("/reviews", { :controller => "reviews", :action => "index" })
-
-  get("/reviews/:path_id", { :controller => "reviews", :action => "show" })
+  get("/reviews/new", { :controller => "reviews", :action => "new" })
+  get("/reviews/:id", { :controller => "reviews", :action => "show" })
 
   # UPDATE
-
-  post("/modify_review/:path_id", { :controller => "reviews", :action => "update" })
+  patch("/reviews/:id", { :controller => "reviews", :action => "update" })
+  get("/reviews/:id/edit", { :controller => "reviews", :action => "edit" })
 
   # DELETE
-  get("/delete_review/:path_id", { :controller => "reviews", :action => "destroy" })
+  delete("/reviews/:id", { :controller => "reviews", :action => "destroy" })
 
   # PROFILE PAGE
   get("/profile/:slug", { :controller => "profiles", :action => "show" })
   #------------------------------
-get "/settings", to: "settings#edit"
-patch "/settings", to: "settings#update"
-  devise_for :users
-  # This is a blank app! Pick your first screen, build out the RCAV, and go from there. E.g.:
-  # get("/your_first_screen", { :controller => "pages", :action => "first" })
+  get "/settings", to: "settings#edit"
+  patch "/settings", to: "settings#update"
+    devise_for :users
 end

@@ -4,15 +4,11 @@
 
 <article>
   <div>
-    <a href="/reviews">
-      Go back
-    </a>
+    <%= button_to "Go Back", "/client-dashboard", method: :get %>
   </div>
 
   <div>
-    <a href="/delete_review/<%= @the_review.id %>">
-      Delete review
-    </a>
+    <%= button_to "Delete", "/reviews/#{@the_review.id}", method: :delete %>
   </div>
   <dl>
     <dt>
@@ -69,7 +65,9 @@
     </h2>
   </header>
 
-  <form action="/modify_review/<%= @the_review.id %>"  method="post" >
+  <form action="/reviews/<%= @the_review.id %>"  method="post" >
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <div>
       <label for="reviewer_id_box">
         Reviewer

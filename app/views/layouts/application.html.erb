@@ -57,7 +57,9 @@
     <% end %>
 
     <% if alert %>
-      <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert" aria-label="Close"></button>
+      <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert" aria-live="polite">
+        <%= alert %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 

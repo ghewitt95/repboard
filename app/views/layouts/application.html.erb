@@ -30,15 +30,15 @@
   <body>
     <header role="banner">
       <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #028090;" aria-label="Main navigation">
-        <a class="navbar-brand fw-bold" href="/" aria-label="RepBoard home">RepBoard</a>
+        <a class="navbar-brand fw-bold" href="<%= root_path %>" aria-label="RepBoard home">RepBoard</a>
         <div class="ms-auto d-flex align-items-center gap-3">
           <% if user_signed_in? %>
             <span class="text-white">Hello, <%= current_user.display_name %></span>
             <% if current_user.reviewable? %>
-              <%= link_to "Dashboard", "/dashboard", class: "btn btn-outline-light btn-sm" %>
-              <%= link_to "Settings", "/settings", class: "btn btn-outline-light btn-sm" %>
+              <%= link_to "Dashboard", dashboard_path, class: "btn btn-outline-light btn-sm" %>
+              <%= link_to "Settings", settings_path, class: "btn btn-outline-light btn-sm" %>
             <% else %>
-              <%= link_to "My Reviews", "client-dashboard", class: "btn btn-outline-light btn-sm" %>
+              <%= link_to "My Reviews", "client-dashboard_path", class: "btn btn-outline-light btn-sm" %>
             <% end %>
             <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
           <% else %>

@@ -46,7 +46,7 @@
           <div class="card shadow-sm">
             <div class="card-body">
               <h2 class="card-title mb-4">Leave a Review</h2>
-              <%= form_tag("/reviews", data: { turbo: false, controller: "review-form", action: "submit->review-form#submit" }) do %>
+              <%= form_tag(reviews_path, data: { turbo: false, controller: "review-form", action: "submit->review-form#submit" }) do %>
                 <input type="hidden" name="query_reviewee_id" value="<%= @freelancer.id %>">
 
                 <div class="alert alert-danger d-none" data-review-form-target="error"></div>

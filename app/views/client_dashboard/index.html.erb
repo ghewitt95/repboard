@@ -17,7 +17,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                   <div>
                     <h5 class="card-title mb-1">
-                      <%= link_to review.reviewee.display_name, "/profile/#{review.reviewee.slug}", style: "color: #028090; text-decoration: none; font-weight: 600;" %>
+                      <%= link_to review.reviewee.display_name, profile_path(review.reviewee.slug), style: "color: #028090; text-decoration: none; font-weight: 600;" %>
                     </h5>
                     <span><%= "⭐" * review.stars %></span>
                     <p class="mt-2 mb-1"><%= review.body %></p>
@@ -29,8 +29,8 @@
                       style="border: 1px solid #028090; color: #028090; background: white;"
                       onmouseover="this.style.backgroundColor='#028090'; this.style.color='white';"
                       onmouseout="this.style.backgroundColor='white'; this.style.color='#028090';"
-                      onclick="navigator.clipboard.writeText('<%= root_url %>profile/<%= review.reviewee.slug %>').then(() => { this.textContent = '✓ Copied!'; setTimeout(() => { this.textContent = 'Share'; }, 2000); })">Share</button>
-                    <%= button_to "Delete", "/reviews/#{review.id}", method: :delete, class: "btn btn-outline-danger btn-sm", data: { confirm: "Are you sure?" } %>
+                      onclick="navigator.clipboard.writeText('<%= profile_url(review.reviewee.slug) %>').then(() => { this.textContent = '✓ Copied!'; setTimeout(() => { this.textContent = 'Share'; }, 2000); })">Share</button>
+                    <%= button_to "Delete", review_path(review.id), method: :delete, class: "btn btn-outline-danger btn-sm", data: { confirm: "Are you sure?" } %>
                   </div>
                 </div>
               </div>
@@ -40,7 +40,7 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body text-center py-5">
               <p class="text-muted mb-3">You haven't submitted any reviews yet.</p>
-              <a href="/" class="btn btn-sm" style="background-color: #028090; color: white;">Find a Freelancer</a>
+              <a href="<%= root_path %>" class="btn btn-sm" style="background-color: #028090; color: white;">Find a Freelancer</a>
             </div>
           </div>
         <% end %>

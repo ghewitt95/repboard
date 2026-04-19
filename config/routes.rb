@@ -1,21 +1,19 @@
 Rails.application.routes.draw do
-  get "client_dashboard/index"
-  get("/dashboard", { :controller => "dashboard", :action => "index" })
-  get("/client-dashboard", { :controller => "client_dashboard", :action => "index" })
-  get "home/index"
-  root to: "home#index"
+  root "home#index"
+
+  get "/dashboard" => "dashboard#index"
+  get "/client-dashboard" => "client_dashboard#index"
+
   # Routes for the Review resource:
+  post "/reviews" => "reviews#create"
+  delete "/reviews/:id" => "reviews#destroy"
 
-  # CREATE
-  post("/reviews", { :controller => "reviews", :action => "create" })
+  # Profile page
+  get "/profile/:slug" => "profile#show"
 
-  # DELETE
-  delete("/reviews/:id", { :controller => "reviews", :action => "destroy" })
+  # Settings
+  get "/settings" => "settings#edit"
+  patch "/settings" => "settings#update"
 
-  # PROFILE PAGE
-  get("/profile/:slug", { :controller => "profiles", :action => "show" })
-  #------------------------------
-  get "/settings", to: "settings#edit"
-  patch "/settings", to: "settings#update"
-    devise_for :users
+  devise_for :users
 end

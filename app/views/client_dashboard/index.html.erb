@@ -40,7 +40,7 @@
           <div class="card border-0 shadow-sm">
             <div class="card-body text-center py-5">
               <p class="text-muted mb-3">You haven't submitted any reviews yet.</p>
-              <a href="<%= root_path %>" class="btn btn-sm" style="background-color: #028090; color: white;">Find a Freelancer</a>
+              <%= link_to "Find a Freelancer", root_path, class: "btn btn-sm", style: "background-color: #028090; color: white;" %>
             </div>
           </div>
         <% end %>

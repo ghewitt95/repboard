@@ -30,7 +30,7 @@
   <body>
     <header role="banner">
       <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #028090;" aria-label="Main navigation">
-        <a class="navbar-brand fw-bold" href="<%= root_path %>" aria-label="RepBoard home">RepBoard</a>
+        <%= link_to "RepBoard", root_path, class: "navbar-brand fw-bold", "aria-label": "RepBoard home" %>
         <div class="ms-auto d-flex align-items-center gap-3">
           <% if user_signed_in? %>
             <span class="text-white">Hello, <%= current_user.display_name %></span>

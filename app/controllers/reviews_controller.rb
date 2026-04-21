@@ -2,13 +2,13 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
-    reviewee = User.find(params.fetch("query_reviewee_id"))
+    reviewee = User.find(params.fetch("reviewee_id"))
 
     service = CreateReview.new(
       reviewer: current_user,
       reviewee_id: reviewee.id,
-      body: params.fetch("query_body"),
-      stars: params.fetch("query_stars")
+      body: params.fetch("body"),
+      stars: params.fetch("stars")
     )
     if service.call
       redirect_to profile_path(service.review.reviewee.slug), notice: "Review submitted successfully."

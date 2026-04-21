@@ -11,21 +11,21 @@ class ReviewsController < ApplicationController
       stars: params.fetch("query_stars")
     )
     if service.call
-      redirect_to "/profile/#{service.review.reviewee.slug}", notice: "Review submitted successfully."
+      redirect_to profile_path(service.review.reviewee.slug), notice: "Review submitted successfully."
     else
-      redirect_to "/profile/#{reviewee.slug}", alert: service.error
+      redirect_to profile_path(reviewee.slug), alert: service.error
     end
   end
 
   def destroy
     the_id = params.fetch("id")
-    the_review = Review.where({ :id => the_id }).first
+    the_review = Review.find(the_id)
 
     if the_review.reviewer_id == current_user.id
       the_review.destroy
-      redirect_to("/profile/#{the_review.reviewee.slug}", { :notice => "Review deleted." })
+      redirect_to profile_path(the_review.reviewee.slug), notice: "Review deleted."
     else
-      redirect_to("/profile/#{the_review.reviewee.slug}", { :alert => "Not authorized." })
+      redirect_to profile_path(the_review.reviewee.slug), alert: "Not authorized."
     end
   end
 end

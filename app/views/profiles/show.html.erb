@@ -44,14 +44,16 @@
           <div class="card shadow-sm">
             <div class="card-body">
               <h2 class="card-title mb-4">Leave a Review</h2>
-              <%= form_tag(reviews_path, data: { turbo: false, controller: "review-form", action: "submit->review-form#submit" }) do %>
-                <input type="hidden" name="query_reviewee_id" value="<%= @freelancer.id %>">
+              <%= form_with(model: @new_review, data: { turbo: false, controller: "review-form", action: "submit->review-form#submit" }) do |form| %>
+
+                <%= form.hidden_field :reviewee_id, value: @freelancer.id %>
 
                 <div class="alert alert-danger d-none" data-review-form-target="error"></div>
 
                 <div class="mb-3" data-controller="star-rating">
                   <label class="form-label fw-bold">Your Rating</label>
-                  <input type="hidden" name="query_stars" data-star-rating-target="input" data-review-form-target="stars" value="0">
+
+                  <%= form.hidden_field :stars, value: 0, data: { star_rating_target: "input", review_form_target: "stars" } %>
                   <div>
                     <% (1..5).each do |i| %>
                       <span
@@ -67,11 +69,11 @@
 
                 <div class="mb-3">
                   <label class="form-label fw-bold">Your Review</label>
-                  <textarea name="query_body" class="form-control" rows="4" data-review-form-target="body" placeholder="Share your experience..."></textarea>
+                  <%= form.text_area :body, class: "form-control", rows: 4, data: { review_form_target: "body" }, placeholder: "Share your experience..." %>
                 </div>
 
                 <div class="d-grid">
-                  <button type="submit" class="btn btn-lg" style="background-color: #028090; border-color: #028090; color: white;">Submit Review</button>
+                  <%= form.submit "Submit Review", class: "btn btn-lg", style: "background-color: #028090; border-color: #028090; color: white;" %>
                 </div>
               <% end %>
             </div>

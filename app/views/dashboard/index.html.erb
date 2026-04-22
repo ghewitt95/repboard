@@ -30,7 +30,7 @@
 
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="mb-0">My Reviews</h2>
-          <%= form_tag(dashboard_path, method: :get, data: { controller: "auto-submit", turbo_frame: "_top" }) do %>
+          <%= form_with(url: dashboard_path, method: :get, data: { controller: "auto-submit", turbo_frame: "_top" }) do |form| %>
             <select name="stars" class="form-select" data-action="change->auto-submit#submit">
               <option value="">All Stars</option>
               <option value="5" <%= "selected" if params[:stars] == "5" %>>⭐⭐⭐⭐⭐</option>

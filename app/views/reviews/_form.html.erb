@@ -1,0 +1,37 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title mb-4">Leave a Review</h2>
+    <%= form_with(model: new_review, data: { turbo: false, controller: "review-form", action: "submit->review-form#submit" }) do |form| %>
+
+      <%= form.hidden_field :reviewee_id, value: freelancer.id %>
+
+      <div class="alert alert-danger d-none" data-review-form-target="error"></div>
+
+      <div class="mb-3" data-controller="star-rating">
+        <label class="form-label fw-bold">Your Rating</label>
+
+        <%= form.hidden_field :stars, value: 0, data: { star_rating_target: "input", review_form_target: "stars" } %>
+        <div>
+          <% (1..5).each do |i| %>
+            <span
+              data-star-rating-target="star"
+              data-value="<%= i %>"
+              data-action="click->star-rating#select mouseover->star-rating#highlight mouseout->star-rating#reset"
+              style="cursor:pointer; font-size: 2rem;">
+              ☆
+            </span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Your Review</label>
+        <%= form.text_area :body, class: "form-control", rows: 4, data: { review_form_target: "body" }, placeholder: "Share your experience..." %>
+      </div>
+
+      <div class="d-grid">
+        <%= form.submit "Submit Review", class: "btn btn-lg", style: "background-color: #028090; border-color: #028090; color: white;" %>
+      </div>
+    <% end %>
+  </div>
+</div>

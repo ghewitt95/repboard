@@ -34,6 +34,7 @@ group :development do
   gem "dev_toolbar", "~> 2.1.0"       # Development toolbar
   gem "draft_generators", "~> 0.0.5"  # Beginner-friendly Rails generators
   gem "haikunator"                    # Generate random names (for databases)
+  gem "faker"
   gem "htmlbeautifier"                # Format HTML/ERB files
   gem "pry-rails"                     # Better Rails console
   gem "rails_db", "~> 2.5.0"          # Database viewer in browser

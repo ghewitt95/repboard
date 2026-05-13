@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  body        :text
 #  stars       :integer
+#  status      :string           default("published"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  reviewee_id :bigint           not null
@@ -15,6 +16,7 @@
 #  index_reviews_on_reviewee_id                  (reviewee_id)
 #  index_reviews_on_reviewer_id                  (reviewer_id)
 #  index_reviews_on_reviewer_id_and_reviewee_id  (reviewer_id,reviewee_id) UNIQUE
+#  index_reviews_on_status                       (status)
 #
 # Foreign Keys
 #
@@ -26,6 +28,12 @@ class Review < ApplicationRecord
   scope :positive, -> { where("stars >= ?", 4) }
   belongs_to :reviewer, class_name: "User", counter_cache: :reviews_given_count
   belongs_to :reviewee, class_name: "User", counter_cache: :reviews_received_count
+
+  enum :status, {
+    published: "published",
+    flagged: "flagged",
+    hidden: "hidden"
+  }, default: "published"
 
   validates :stars, presence: true, inclusion: { in: 1..5 }
   validates :body, presence: true, length: { minimum: 10, maximum: 1000 }

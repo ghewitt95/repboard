@@ -24,8 +24,8 @@
 class Review < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
   scope :positive, -> { where("stars >= ?", 4) }
-  belongs_to :reviewer, class_name: "User"
-  belongs_to :reviewee, class_name: "User"
+  belongs_to :reviewer, class_name: "User", counter_cache: :reviews_given_count
+  belongs_to :reviewee, class_name: "User", counter_cache: :reviews_received_count
 
   validates :stars, presence: true, inclusion: { in: 1..5 }
   validates :body, presence: true

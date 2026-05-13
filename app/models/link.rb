@@ -19,7 +19,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Link < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, counter_cache: true
 
   validates :label, presence: true
   validates :url, presence: true

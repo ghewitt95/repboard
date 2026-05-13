@@ -46,11 +46,11 @@
     "erb": "html"
   },
   "[ruby]": {
-    "editor.defaultFormatter": "mbessey.vscode-rufo",
+    "editor.defaultFormatter": "jnbt.vscode-rufo",
     "editor.formatOnSave": false
   },
   "[erb]": {
-    "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
     "editor.formatOnSave": false,
     "editor.autoClosingBrackets": "beforeWhitespace"
   },

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_13_024652) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_13_124518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -32,9 +32,11 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_13_024652) do
     t.datetime "updated_at", null: false
     t.bigint "reviewer_id", null: false
     t.bigint "reviewee_id", null: false
+    t.string "status", default: "published", null: false
     t.index ["reviewee_id"], name: "index_reviews_on_reviewee_id"
     t.index ["reviewer_id", "reviewee_id"], name: "index_reviews_on_reviewer_id_and_reviewee_id", unique: true
     t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+    t.index ["status"], name: "index_reviews_on_status"
   end
 
   create_table "solid_cable_messages", force: :cascade do |t|

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy, :moderate]
 
   def create
     service = CreateReview.new(**review_params.to_h.symbolize_keys, reviewer: current_user)
@@ -22,6 +22,25 @@ class ReviewsController < ApplicationController
     else
       redirect_to profile_path(the_review.reviewee.slug), alert: "Not authorized."
     end
+  end
+
+  def moderate
+    review = Review.find(params[:id])
+
+    if review.reviewee_id != current_user.id
+      redirect_to root_path, alert: "Not authorized."
+      return
+    end
+
+    new_status = params[:status]
+
+    unless Review.statuses.key?(new_status)
+      redirect_to dashboard_path, alert: "Invalid status."
+      return
+    end
+
+    review.update!(status: new_status)
+    redirect_to dashboard_path, notice: "Review marked as #{new_status}."
   end
 
   private

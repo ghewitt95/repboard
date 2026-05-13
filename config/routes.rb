@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # Routes for the Review resource:
   post "/reviews" => "reviews#create", as: :reviews
   delete "/reviews/:id" => "reviews#destroy", as: :review
+  patch "/reviews/:id/moderate" => "reviews#moderate", as: :moderate_review
 
   # Profile page
   get "/profile/:slug" => "profiles#show", as: :profile

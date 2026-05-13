@@ -8,10 +8,13 @@
 #  display_name           :string
 #  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  links_count            :integer          default(0), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  reviewable             :boolean          default(FALSE)
+#  reviews_given_count    :integer          default(0), not null
+#  reviews_received_count :integer          default(0), not null
 #  slug                   :citext
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

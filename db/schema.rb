@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_13_022121) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_13_024652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -195,8 +195,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_13_022121) do
     t.integer "reviews_received_count", default: 0, null: false
     t.integer "reviews_given_count", default: 0, null: false
     t.integer "links_count", default: 0, null: false
+    t.index ["display_name"], name: "index_users_on_display_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
   add_foreign_key "links", "users"

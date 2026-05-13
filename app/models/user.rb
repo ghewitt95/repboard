@@ -33,6 +33,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :slug, uniqueness: true, allow_nil: true
+  validates :display_name, presence: true, length: { maximum: 60 }
+  validates :bio, length: { maximum: 500 }, allow_nil: true
 
   has_many :reviews_given, class_name: "Review", foreign_key: "reviewer_id", dependent: :destroy
   has_many :reviews_received, class_name: "Review", foreign_key: "reviewee_id", dependent: :destroy

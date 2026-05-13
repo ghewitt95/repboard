@@ -28,6 +28,6 @@ class Review < ApplicationRecord
   belongs_to :reviewee, class_name: "User", counter_cache: :reviews_received_count
 
   validates :stars, presence: true, inclusion: { in: 1..5 }
-  validates :body, presence: true
+  validates :body, presence: true, length: { minimum: 10, maximum: 1000 }
   validates :reviewer_id, uniqueness: { scope: :reviewee_id, message: "you have already reviewed this freelancer" }
 end

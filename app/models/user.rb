@@ -6,13 +6,13 @@
 #  avatar_url             :string
 #  bio                    :text
 #  display_name           :string
-#  email                  :string           default(""), not null
+#  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  reviewable             :boolean          default(FALSE)
-#  slug                   :string
+#  slug                   :citext
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
